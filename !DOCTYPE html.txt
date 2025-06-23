@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MemoFutur - Capsules Temporelles du Futur</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --accent: #3b82f6;
+            --text: #1f2937;
+            --light: #f9fafb;
+            --dark: #111827;
+        }
+        
+        .dark-mode {
+            --primary: #3b82f6;
+            --secondary: #2563eb;
+            --accent: #60a5fa;
+            --text: #f9fafb;
+            --light: #1f2937;
+            --dark: #f9fafb;
+            background-color: #111827;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 transition-colors duration-300">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <img src="logo.png" alt="MemoFutur Logo" class="h-10">
+                <h1 class="text-2xl font-bold">MemoFutur</h1>
+            </div>
+            
+            <nav class="hidden md:flex space-x-6">
+                <a href="index.html" class="hover:text-blue-200 transition">Accueil</a>
+                <a href="services.html" class="hover:text-blue-200 transition">Services</a>
+                <a href="about.html" class="hover:text-blue-200 transition">À propos</a>
+                <a href="contact.html" class="hover:text-blue-200 transition">Contact</a>
+                <div class="relative group">
+                    <button class="hover:text-blue-200 transition flex items-center">
+                        Mon Compte <i class="fas fa-chevron-down ml-1 text-sm"></i>
+                    </button>
+                    <div class="absolute hidden group-hover:block bg-white text-gray-800 shadow-lg rounded-md p-2 w-48 right-0 mt-2 dark:bg-gray-800 dark:text-white">
+                        <a href="account.html" class="block px-4 py-2 hover:bg-blue-50 rounded dark:hover:bg-gray-700">Profil</a>
+                        <a href="history.html" class="block px-4 py-2 hover:bg-blue-50 rounded dark:hover:bg-gray-700">Historique</a>
+                        <a href="support.html" class="block px-4 py-2 hover:bg-blue-50 rounded dark:hover:bg-gray-700">Support</a>
+                        <a href="logout.html" class="block px-4 py-2 hover:bg-blue-50 rounded dark:hover:bg-gray-700">Déconnexion</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-blue-700 transition">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <select id="language-select" class="bg-transparent border-none focus:ring-0">
+                        <option value="fr">FR</option>
+                        <option value="en">EN</option>
+                    </select>
+                </div>
+            </nav>
+            
+            <button class="md:hidden text-2xl" id="mobile-menu-button">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden bg-blue-700" id="mobile-menu">
+            <div class="container mx-auto px-4 py-2 flex flex-col space-y-3">
+                <a href="index.html" class="hover:text-blue-200 transition">Accueil</a>
+                <a href="services.html" class="hover:text-blue-200 transition">Services</a>
+                <a href="about.html" class="hover:text-blue-200 transition">À propos</a>
+                <a href="contact.html" class="hover:text-blue-200 transition">Contact</a>
+                <a href="account.html" class="hover:text-blue-200 transition">Profil</a>
+                <a href="history.html" class="hover:text-blue-200 transition">Historique</a>
+                <a href="support.html" class="hover:text-blue-200 transition">Support</a>
+                <a href="logout.html" class="hover:text-blue-200 transition">Déconnexion</a>
+                <div class="flex items-center justify-between pt-2">
+                    <button id="theme-toggle-mobile" class="p-2 rounded-full hover:bg-blue-800 transition">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <select id="language-select-mobile" class="bg-transparent border-none focus:ring-0">
+                        <option value="fr">FR</option>
+                        <option value="en">EN</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-b from-blue-50 to-white py-16 dark:from-gray-800 dark:to-gray-900">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-6">Capsules Temporelles du Futur</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Préservez vos souvenirs pour les générations futures avec notre technologie de pointe</p>
+            
+            <div class="relative max-w-md mx-auto">
+                <input type="text" placeholder="Rechercher des capsules..." class="w-full py-3 px-4 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <button class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 transition">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-16 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Nos Services</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card group">
+                    <div class="service-icon bg-blue-100 text-blue-600 group-hover:bg-blue-600 group-hover:text-white dark:bg-gray-700 dark:text-blue-400 dark:group-hover:bg-blue-600">
+                        <i class="fas fa-time-capsule"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Capsule Standard</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">Préservez vos souvenirs essentiels pour 10 ans</p>
+                    <div class="price-tag">29€</div>
+                    
+                    <div class="options-panel">
+                        <div class="option">
+                            <input type="checkbox" id="opt1-1">
+                            <label for="opt1-1">Message vidéo</label>
+                        </div>
+                        <div class="option">
+                            <input type="checkbox" id="opt1-2">
+                            <label for="opt1-2">Photos numériques (max 20)</label>
+                        </div>
+                        <div class="option">
+                            <input type="checkbox" id="opt1-3">
+                            <label for="opt1-3">Objet physique (petit)</label>
+                        </div>
+                        <div class="option">
+                            <input type="checkbox" id="opt1-4">
+                            <label for="opt1-4">Localisation GPS</label>
+                        </div>
+                        <div class="option">
+                            <input type="checkbox" id="opt1-5">
+                            <label for="opt1-5">Message texte</label>
+                        </div>
+                    </div>
+                    
+                    <button class="cta-button" onclick="window.location.href='payment.html'">
+                        Choisir ce plan
+                    </button>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card group">
+                    <div class="service-icon bg-blue-100 text-blue-600 group-hover:bg-blue-600 group-hover:text-white dark:bg-gray-700 dark:text-blue-400 dark:group-hover:bg-blue-600">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Capsule Premium</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">Expérience complète de préservation pour 25 ans</p>
+                    <div class="price-tag">59€</div>
+                    
+                    <div class="options-panel">
+                        <div class="option">
+                            <input type="checkbox" id="opt2-1" checked>
+                            <label for="opt2-1">Message vidéo HD</label>
+                        </div>
+                        <div class="option">
+                            <input type="checkbox" id="opt2-2" checked>
+                            <label for="opt2-2">Photos illimitées</label>
+                        </div>
+                        <div class="option">
+                            <input type="checkbox" id="opt2-3">
+                            <label for="opt2-3">Objet physique (moyen)</label>
+                        </div>
+                        <div class="option">
+                            <input type="checkbox" id="opt2-4" checked>
+                            <label for="opt2-4">Localisation GPS + réalité augmentée</label>
+                        </div>
+                        <div class="option">
+                            <input type="checkbox" id="opt2-5">
+                            <label for="opt2-5">Message texte long</label>
+                        </div>
+                        <div class="option">
+                            <input type="checkbox" id="opt2-6">
+                            <label for="opt2-6">Capsule étanche</label>
+                        </div>
+                        <div class="option">
+                            <input type="checkbox" id="opt2-7">
+                            <label for="opt2-7">Accès anticipé</label>
+                        </div>
+                    </div>
+                    
+                    <button class="cta-button" onclick="window.location.href='payment.html'">
+                        Choisir ce plan
+                    </button>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card group">
+                    <div class="service-icon bg-blue-100 text-blue-600 group-hover:bg-blue-600 group-hover:text-white dark:bg-gray-700 dark:text-blue-400 dark:group-hover:bg-blue-600">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Capsule Héritage</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">Préservation permanente pour les générations futures</p>
+                    <div class="price-tag">99€</div>
+                    
+                    <div class="options-panel">
+                        <div class="option">
+                            <input type="checkbox" id="opt3-1" checked>
+                            <label for="opt3-1">Message vidéo 4K</label>
+                        </div>
+                        <div class="option">
+                            <input type="checkbox" id="opt3-2" checked>
+                            <label for="opt3-2">Photos et vidéos illimitées</label>
+                        </div>
+                        <div class="option">
+                            <input type="checkbox" id="opt3-3" checked>
+                            <label for="opt3-3">Objet physique (grand)</label>
+                        </div>
+                        <div class="option">
+                            <input type="checkbox" id="opt3-4" checked>
+                            <label for="opt3-4">Localisation avec balise permanente</label>
+                        </div>
+                        <div class="option">
+                            <input type="checkbox" id="opt3-5" checked>
+                            <label for="opt3-5">Message texte long</label>
+                        </div>
+                        <div class="option">
+                            <input type="checkbox" id="opt3-6" checked>
+                            <label for="opt3-6">Capsule indestructible</label>
+                        </div>
+                        <div class="option">
+                            <input type="checkbox" id="opt3-7" checked>
+                            <label for="opt3-7">Accès anticipé</label>
+                        </div>
+                        <div class="option">
+                            <input type="checkbox" id="opt3-8">
+                            <label for="opt3-8">Certificat d'authenticité</label>
+                        </div>
+                        <div class="option">
+                            <input type="checkbox" id="opt3-9">
+                            <label for="opt3-9">Inclusion dans l'archive mondiale</label>
+                        </div>
+                    </div>
+                    
+                    <button class="cta-button" onclick="window.location.href='payment.html'">
+                        Choisir ce plan
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Pourquoi choisir MemoFutur?</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Sécurité maximale</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Nos capsules utilisent une technologie de cryptage quantique pour protéger vos souvenirs.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-cog"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Personnalisation avancée</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Chaque capsule est unique, adaptée à vos besoins spécifiques.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Durabilité exceptionnelle</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Matériaux conçus pour durer des siècles, même dans des conditions extrêmes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Ce que nos clients disent</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"J'ai créé une capsule pour ma fille nouveau-née. L'interface est si intuitive et les options de personnalisation sont incroyables!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <h4>Marie D.</h4>
+                            <p class="text-sm text-gray-500">Paris, France</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"La capsule premium était parfaite pour notre anniversaire de mariage. Nous avons pu inclure des vidéos, des photos et même un petit objet."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <h4>Thomas L.</h4>
+                            <p class="text-sm text-gray-500">Lyon, France</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-6">Prêt à créer votre capsule temporelle?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Commencez votre voyage vers le futur dès aujourd'hui</p>
+            <button class="cta-button-white" onclick="window.location.href
